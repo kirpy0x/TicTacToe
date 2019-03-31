@@ -1,246 +1,188 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[1]:
-
-
-def display_board(board):
-    print("\n"*10)
-    print(board[7]+'|'+board[8]+'|'+board[9])
-    print(board[4]+'|'+board[5]+'|'+board[6])
-    print(board[1]+'|'+board[2]+'|'+board[3])
-
-
-# In[2]:
-
-
-def player_input():
-    marker = ''
-    
-    while marker != 'X'and marker != 'O':
-        marker = input('Pick a marker "X" or "o" ').upper()
-    
-        
-    player1 = marker
-    
-    if marker == 'X':
-        return ('X','O')
-    else:
-        return ('O','X')
-    
-    return('Player one is "{}", and player two is "{}"' .format(player1,player2))
-
-
-# In[3]:
-
-
-def place_marker(board, marker, position):
-    board[position] = marker
-
-
-# In[4]:
-
-
-def win_check(board, mark):
-    
-    return (board[1] == mark and board[2] == mark and board[3] == mark or
-    board[4] == mark and board[5] == mark and board[6] == mark or
-    board[7] == mark and board[8] == mark and board[9] == mark or
-    board[1] == mark and board[5] == mark and board[9] == mark or
-    board[3] == mark and board[5] == mark and board[7] == mark or
-    board[1] == mark and board[4] == mark and board[7] == mark or
-    board[2] == mark and board[5] == mark and board[8] == mark or
-    board[3] == mark and board[6] == mark and board[9] == mark)
-
-
-# In[5]:
-
-
-import random
-def choose_first():
-    if random.randint(0,1) == 0:
-        return 'player2'
-    else:
-        return 'player1'
-
-
-# In[6]:
-
-
-def space_check(board,position):
-    return board[position] == '_'
-
-
-# In[7]:
-
-
-def full_board_check(board):
-    for i in range(1,10):
-        if space_check(board,i):
-            return False
-    return True
-
-
-# In[8]:
-
-
-def player_choice(board):
-    position = 0
-    while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board,position):
-        position = int(input('Please enter a number from 1 to 9 : '))
-    return position
-
-    
-
-
-# In[9]:
-
-
-def replay():
-    return input("Wanna play again? : ").lower().startswith('y')
-
-
-# In[ ]:
-
-
-
-print('Welcome to Tic Tac Toe')
-
-
-# WHILE LOOP TO KEEP RUNNING THE GAME
-
-while True:
-    
-    # play game
-    
-    # Set everything up: board, who's first, choose markers
-    board = ['#','_','_','_','_','_','_','_','_','_']
-    player1_marker,player2_marker = player_input()
-    turn = choose_first()
-    print(turn + ' will go first')
-    
-    play_game = input('Ready? y or n ').lower()
-    if play_game == 'y':
-        game_on = True
-    else:
-        game_on = False
-    
-    
-    
-    #game play
-    
-    while game_on:
-        if turn == 'Player1':
-            
-            # show board
-            display_board(board)
-            
-            #choose position
-            position = player_choice(board)
-            
-            #place marker on position
-            place_marker(board, player1_marker, position)
-            
-            #check win
-            if win_check(board, player1_marker):
-                display_board(board)
-                print("Player 1 you win!")
-                game_on = False
-            else:
-            
-            #check tie
-                if full_board_check(board):
-                
-                    display_board(board)
-                    print("It's a tie!!! Losers!")
-                    game_on = False
-                else:
-                    turn = 'Player2'
-                    
-            
-            #next players turn
-            turn = 'Player2'
-    
-    #player two turn
-    
-        else:
-            turn = 'Player2'
-                # show board
-            display_board(board)
-            
-            #choose position
-            position = player_choice(board)
-            
-            #place marker on position
-            place_marker(board,player2_marker,position)
-            
-            #check win
-            if win_check(board, player2_marker):
-        
-                display_board(board)
-                print("Player 2 you win!")
-                game_on = False
-            else:
-             
-            
-            #check tie
-                if full_board_check(board):
-                
-                    display_board(board)
-                    print("It's a tie!!! Losers!")
-                    game_on = False
-                else:
-                    turn = 'Player1'
-                    
-            
-            #next players turn
-            turn = 'Player1'
-    else:
-        if replay() = True
-    
-    
-    #player two turn
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-# 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Please pick a marker \"X\" or \"o\"X\n",
+      "Please enter a number1\n"
+     ]
+    }
+   ],
+   "source": [
+    "player1 = input('Please pick a marker \"X\" or \"o\"')\n",
+    "position = int(input('Please enter a number'))\n",
+    "board = ['#','X','X','X','_','_','_','_','_','_']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def clear_output():\n",
+    "    print(\"\\n\"*100)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def display_board(board):\n",
+    "    \n",
+    "    print(board[7]+'|'+board[8]+'|'+board[9])\n",
+    "    print(board[4]+'|'+board[5]+'|'+board[6])\n",
+    "    print(board[1]+'|'+board[2]+'|'+board[3])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def player_input():\n",
+    "    marker = ''\n",
+    "    \n",
+    "    while marker != 'X'and marker != 'O':\n",
+    "        marker = input('X or O you dummy...')\n",
+    "    \n",
+    "        \n",
+    "    player1 = marker\n",
+    "    \n",
+    "    if player1 == 'X':\n",
+    "        player2 = 'O'\n",
+    "    else:\n",
+    "        player2 = 'X'\n",
+    "    \n",
+    "    return('Player one is \"{}\", and player two is \"{}\"' .format(player1,player2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def place_marker(board, marker, position):\n",
+    "    board[position] = marker"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def win_check(board, mark):\n",
+    "    \n",
+    "    return (board[1] == mark and board[2] == mark and board[3] == mark or\n",
+    "    board[4] == mark and board[5] == mark and board[6] == mark or\n",
+    "    board[7] == mark and board[8] == mark and board[9] == mark or\n",
+    "    board[1] == mark and board[5] == mark and board[9] == mark or\n",
+    "    board[3] == mark and board[5] == mark and board[7] == mark or\n",
+    "    board[1] == mark and board[4] == mark and board[7] == mark or\n",
+    "    board[2] == mark and board[5] == mark and board[8] == mark or\n",
+    "    board[3] == mark and board[6] == mark and board[9] == mark)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import random\n",
+    "def choose_first(player1,player2):\n",
+    "    player1 = 0\n",
+    "    player2 = 1\n",
+    "    random.randint(0,1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'player2' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-46-f3d43ffad647>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mchoose_first\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mplayer1\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0mplayer2\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m: name 'player2' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "choose_first(player1,player2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
