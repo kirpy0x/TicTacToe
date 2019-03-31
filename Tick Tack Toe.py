@@ -168,7 +168,9 @@ while True:
             #next players turn
             turn = 'Player1'
     else:
-        if replay() = True
+        if replay() == True:
+            game_on = True
+
     
     
     #player two turn
